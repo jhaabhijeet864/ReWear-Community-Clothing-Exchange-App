@@ -1,0 +1,17 @@
+{
+  "name": "rewear-community-exchange",
+  "version": "1.0.0",
+  "description": "ReWear Community Clothing Exchange - Vanilla JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/",
+    "dev": "live-server --port=3000 --open=/",
+    "build": "echo 'Build complete'"
+  },
+  "keywords": ["clothing", "exchange", "community", "swap"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

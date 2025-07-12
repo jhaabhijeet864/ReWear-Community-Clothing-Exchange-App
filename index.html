@@ -1,265 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReWear Community Clothing Exchange</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>👕♻️ ReWear – Community Clothing Exchange | Odoo Hackathon</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Google Fonts for a friendly look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; padding: 0;
+      background: #f9fafb;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #222;
+    }
+    header {
+      background: linear-gradient(90deg, #7bc9b2 0%, #e2f4c5 100%);
+      color: #222;
+      padding: 2.5rem 1rem 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 180px; 
+      border-radius: 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      margin-bottom: 1rem;
+      animation: dropIn 1.3s cubic-bezier(.18,.89,.43,1.19);
+    }
+    @keyframes dropIn {
+      0% { transform: translateY(-60px) scale(0.8); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    h1 {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.8rem;
+      margin: 0.5rem 0 0 0;
+      letter-spacing: 1px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #3aaf85, #a8e063 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      margin: 0.5rem 0 1rem 0;
+      color: #377a5f;
+      letter-spacing: 0.5px;
+      animation: fadeIn 1.6s 0.5s both;
+    }
+    .emojis {
+      font-size: 2.2rem;
+      animation: popEmojis 1.4s;
+    }
+    @keyframes popEmojis {
+      0% { transform: scale(0.5); opacity: 0; }
+      80% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    nav {
+      margin: 1.2rem 0 0 0;
+    }
+    nav a {
+      display: inline-block;
+      text-decoration: none;
+      color: #28795c;
+      background: #fff;
+      border-radius: 2rem;
+      padding: 0.6rem 1.3rem;
+      font-weight: 700;
+      margin: 0 0.6rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(45,175,133,0.10);
+      transition: background 0.18s, box-shadow 0.18s, color 0.18s;
+    }
+    nav a:hover {
+      background: #d4f7e2;
+      color: #03563a;
+      box-shadow: 0 4px 16px rgba(45,175,133,0.18);
+    }
+    .hackathon-badge {
+      position: absolute; right: 18px; top: 20px;
+      background: #222; color: #fff; padding: 0.5rem 1.2rem;
+      border-radius: 2rem; font-size: 1rem; font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      z-index: 2;
+      animation: fadeIn 1.5s 1s both;
+    }
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto 0 auto;
+      padding: 0 1.5rem 2.5rem 1.5rem;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 4px 28px rgba(40,175,133,0.07);
+      animation: fadeIn 1.2s;
+    }
+    .section-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #387e5a;
+      margin: 2.5rem 0 1.2rem 0;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+    }
+    .team-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 1.5rem 0;
+    }
+    .team-list li {
+      font-size: 1.1rem;
+      margin: 0.2rem 0;
+      padding-left: 2em;
+      position: relative;
+      animation: fadeIn 1s;
+    }
+    .team-list li::before {
+      content: "👤";
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+    }
+    /* Features grid */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2em;
+      margin-bottom: 2em;
+    }
+    .feature-card {
+      flex: 1 1 260px;
+      background: #fafcfc;
+      border-radius: 18px;
+      padding: 1.5em 1em 1em 1em;
+      box-shadow: 0 2px 10px rgba(40,175,133,0.07);
+      min-width: 220px;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: fadeIn 1.6s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 6px 38px rgba(40,175,133,0.11);
+    }
+    .feature-emoji {
+      font-size: 1.7em;
+      margin-bottom: 0.4em;
+    }
+    .feature-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 0.2em;
+      color: #2b7c6e;
+    }
+    .feature-desc {
+      font-size: 0.97em;
+      color: #444;
+    }
+    /* How to run */
+    .run-section {
+      margin: 2.5em 0 1.5em 0;
+      border-left: 5px solid #3aaf85;
+      background: #f5fdf6;
+      padding: 1.2em 1.5em;
+      border-radius: 1em;
+      box-shadow: 0 1px 4px rgba(40,175,133,0.10);
+      animation: fadeIn 1.7s;
+    }
+    code, pre {
+      background: #f4f7f6;
+      color: #28795c;
+      padding: 0.12em 0.5em;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    .item-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
+      justify-content: center;
+      margin: 2em 0;
+    }
+    .item-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(40,175,133,0.10);
+      max-width: 180px;
+      min-width: 140px;
+      padding: 0.8em 0.6em 0.7em 0.6em;
+      text-align: center;
+      transition: transform 0.18s, box-shadow 0.18s;
+      animation: fadeIn 2.1s;
+    }
+    .item-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 5px 30px rgba(40,175,133,0.15);
+    }
+    .item-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 0.6em;
+      background: #f7faf8;
+    }
+    .item-card span {
+      display: block;
+      font-size: 1em;
+      font-weight: 600;
+      color: #3aaf85;
+      margin-bottom: 0.2em;
+    }
+    .item-card small {
+      color: #888;
+    }
+    .footer {
+      margin: 2.5em 0 0.5em 0;
+      text-align: center;
+      font-size: 1.1em;
+      color: #387e5a;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      animation: fadeIn 2.4s;
+    }
+    @media (max-width: 730px) {
+      .features-grid, .item-gallery { flex-direction: column; align-items: center; }
+      main { padding: 0.5rem 0.2rem 2rem 0.2rem; }
+      .section-title { font-size: 1.4rem; }
+    }
+    @media (max-width: 500px){
+      h1 { font-size: 2rem; }
+      nav a { padding: 0.4rem 0.7rem; font-size:0.87rem; }
+      .hackathon-badge { font-size: 0.95rem; right: 8px; top: 8px; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <h1><a href="#home">ReWear</a></h1>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#browse">Browse</a></li>
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#admin">Admin</a></li>
-                    <li><a href="#login">Login</a></li>
-                    <li><a href="#register">Sign Up</a></li>
-                </ul>
-            </nav>
+  <header>
+    <div class="hackathon-badge">Odoo Hackathon 25⭕</div>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Clothes Swap Hero">
+    <div class="emojis">👚 👖 ♻️ 👕</div>
+    <h1>ReWear – Community Clothing Exchange</h1>
+    <div class="subtitle">
+      Swap. Share. Sustain. <span style="font-size:1.3em">🌱</span>
+    </div>
+    <nav>
+      <a href="#problem-statement">Problem Statement</a>
+      <a href="#team">Team</a>
+      <a href="#features">Features</a>
+      <a href="#howtorun">How to Run</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="problem-statement">
+      <div class="section-title">📋 Problem Statement</div>
+      <p>
+        <b>ReWear</b> enables users to exchange unused clothing through easy direct swaps or a fun point-based system. We aim to promote <b>sustainable fashion</b> and reduce textile waste by encouraging everyone to reuse wearable clothes instead of discarding them.
+      </p>
+    </section>
+
+    <section id="team">
+      <div class="section-title">🤝 Team: Mech X4</div>
+      <ul class="team-list">
+        <li>Abhijeet Jha <b>(Team Lead)</b></li>
+        <li>Siya Pankaj</li>
+      </ul>
+    </section>
+
+    <section id="features">
+      <div class="section-title">🌟 Key Features</div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-emoji">🔐</div>
+          <div class="feature-title">User Authentication</div>
+          <div class="feature-desc">Secure signup and login for all users.</div>
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Home Page -->
-        <section id="home" class="page active">
-            <div class="hero">
-                <div class="container">
-                    <h2>Welcome to ReWear Community Exchange</h2>
-                    <p>Browse, swap, and redeem clothing items in your community!</p>
-                </div>
-            </div>
-
-            <!-- Carousel Section -->
-            <section class="carousel-section">
-                <div class="container">
-                    <div class="carousel">
-                        <div class="carousel-item active">
-                            <div class="carousel-content">
-                                <h3>Featured Clothing Items</h3>
-                                <p>Discover amazing pieces from your community</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Categories Section -->
-            <section class="categories">
-                <div class="container">
-                    <h2>Categories</h2>
-                    <div class="category-grid">
-                        <div class="category-card">
-                            <i class="fas fa-male"></i>
-                            <h3>Men</h3>
-                        </div>
-                        <div class="category-card">
-                            <i class="fas fa-female"></i>
-                            <h3>Women</h3>
-                        </div>
-                        <div class="category-card">
-                            <i class="fas fa-child"></i>
-                            <h3>Kids</h3>
-                        </div>
-                        <div class="category-card">
-                            <i class="fas fa-gem"></i>
-                            <h3>Accessories</h3>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Product Listings -->
-            <section class="products">
-                <div class="container">
-                    <h2>Featured Products</h2>
-                    <div class="product-grid" id="product-grid">
-                        <!-- Products will be loaded here -->
-                    </div>
-                </div>
-            </section>
-        </section>
-
-        <!-- Login Page -->
-        <section id="login" class="page">
-            <div class="container">
-                <div class="auth-form glass-card">
-                    <h2>Login</h2>
-                    <form id="login-form">
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-user"></i></span>
-                            <input type="text" id="login-username" placeholder="Username" required>
-                        </div>
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-lock"></i></span>
-                            <input type="password" id="login-password" placeholder="Password" required>
-                            <span class="toggle-password" onclick="togglePassword('login-password', this)"><i class="fas fa-eye"></i></span>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
-                    <div class="form-footer">
-                        <span>Don't have an account?</span> <a href="#register" class="switch-link">Sign Up</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Register Page -->
-        <section id="register" class="page">
-            <div class="container">
-                <div class="auth-form glass-card">
-                    <h2>Register</h2>
-                    <form id="register-form">
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-user"></i></span>
-                            <input type="text" id="register-name" placeholder="Full Name" required>
-                        </div>
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                            <input type="email" id="register-email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-lock"></i></span>
-                            <input type="password" id="register-password" placeholder="Password" required>
-                            <span class="toggle-password" onclick="togglePassword('register-password', this)"><i class="fas fa-eye"></i></span>
-                        </div>
-                        <div class="form-group icon-input">
-                            <span class="input-icon"><i class="fas fa-lock"></i></span>
-                            <input type="password" id="register-confirm" placeholder="Confirm Password" required>
-                            <span class="toggle-password" onclick="togglePassword('register-confirm', this)"><i class="fas fa-eye"></i></span>
-                        </div>
-                        <button type="submit" class="btn btn-success">Register</button>
-                    </form>
-                    <div class="form-footer">
-                        <span>Already have an account?</span> <a href="#login" class="switch-link">Login</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Dashboard Page -->
-        <section id="dashboard" class="page">
-            <div class="container">
-                <h2>User Dashboard</h2>
-                <div class="dashboard-content">
-                    <div class="user-info">
-                        <div class="avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-details">
-                            <h3>User Name</h3>
-                            <p>user@email.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="dashboard-sections">
-                        <div class="section">
-                            <h3>My Listings</h3>
-                            <div class="listing-grid" id="user-listings">
-                                <!-- User listings will be loaded here -->
-                            </div>
-                        </div>
-                        
-                        <div class="section">
-                            <h3>My Purchases</h3>
-                            <div class="purchase-grid" id="user-purchases">
-                                <!-- User purchases will be loaded here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Admin Panel -->
-        <section id="admin" class="page">
-            <div class="container">
-                <h2>Admin Panel</h2>
-                <div class="admin-controls">
-                    <button class="btn btn-primary">Manage Users</button>
-                    <button class="btn btn-primary">Manage Orders</button>
-                    <button class="btn btn-primary">Manage Listings</button>
-                </div>
-                <div class="admin-content">
-                    <div class="user-management">
-                        <h3>User Management</h3>
-                        <div class="user-list" id="admin-user-list">
-                            <!-- Admin user list will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Item Edit Page -->
-        <section id="item-edit" class="page">
-            <div class="container">
-                <h2>Add / Edit Product</h2>
-                <div class="edit-form">
-                    <form id="item-form">
-                        <div class="form-row">
-                            <div class="form-col">
-                                <div class="image-upload">
-                                    <div class="upload-area">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                        <p>Click to upload images</p>
-                                    </div>
-                                    <input type="file" id="item-images" multiple accept="image/*">
-                                </div>
-                                <div class="image-preview" id="image-preview">
-                                    <!-- Image previews will be shown here -->
-                                </div>
-                            </div>
-                            <div class="form-col">
-                                <div class="form-group">
-                                    <input type="text" id="item-name" placeholder="Product Name" required>
-                                </div>
-                                <div class="form-group">
-                                    <textarea id="item-description" placeholder="Product Description" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Save Product</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 ReWear Community Exchange. All rights reserved.</p>
+        <div class="feature-card">
+          <div class="feature-emoji">🏠</div>
+          <div class="feature-title">Landing Page</div>
+          <div class="feature-desc">See featured, trending, and latest items.</div>
         </div>
-    </footer>
+        <div class="feature-card">
+          <div class="feature-emoji">👤</div>
+          <div class="feature-title">User Dashboard</div>
+          <div class="feature-desc">Manage your profile, points, items, and swaps.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-emoji">👗</div>
+          <div class="feature-title">Item Listings</div>
+          <div class="feature-desc">Browse and view detailed info about clothing items.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-emoji">➕</div>
+          <div class="feature-title">Add New Item</div>
+          <div class="feature-desc">Upload images, add tags, and clothing details.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-emoji">🔄</div>
+          <div class="feature-title">Swap System</div>
+          <div class="feature-desc">Direct swaps or earn/redeem points for clothing.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-emoji">🛡️</div>
+          <div class="feature-title">Admin Panel</div>
+          <div class="feature-desc">Moderate listings & keep the community safe.</div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Scripts -->
-    <script src="js/app.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="js/data.js"></script>
-    <script>
-    function togglePassword(inputId, el) {
-        const input = document.getElementById(inputId);
-        const icon = el.querySelector('i');
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    }
-    </script>
+    <section id="howtorun">
+      <div class="section-title">⚡️ How to Run the Project</div>
+      <div class="run-section">
+        <b>Frontend (Vanilla JavaScript):</b><br>
+        <ol>
+          <li>Just open <code>index.html</code> in your browser, or</li>
+          <li>Use a static server like <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer" target="_blank">Live Server</a> or run:<br>
+            <pre>npx live-server --port=3000 --open=./index.html</pre>
+          </li>
+        </ol>
+        <b>Backend (Node.js/Express/MongoDB):</b>
+        <ol>
+          <li>Go to <code>backend/</code> and run:<br>
+            <pre>npm install</pre>
+          </li>
+          <li>Copy env template and edit it:<br>
+            <pre>cp env.example .env</pre>
+          </li>
+          <li>(Optional) Seed sample data:<br>
+            <pre>npm run seed</pre>
+          </li>
+          <li>Start backend server:<br>
+            <pre>npm run dev</pre>
+          </li>
+        </ol>
+        <b>API runs at:</b> <code>http://localhost:5000/api</code>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="section-title">🧺 Item Gallery</div>
+      <div class="item-gallery">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Trendy Denim Jacket">
+          <span>Denim Jacket</span>
+          <small>Size M • 14pts</small>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" alt="Red Dress">
+          <span>Red Summer Dress</span>
+          <small>Size S • 12pts</small>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=300&q=80" alt="Hoodie">
+          <span>Grey Hoodie</span>
+          <small>Size L • 10pts</small>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1469398715555-76331a309c9b?auto=format&fit=crop&w=300&q=80" alt="T-shirt">
+          <span>Graphic Tee</span>
+          <small>Size M • 8pts</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">
+    ✨👚👖♻️ <b>Happy swapping and coding!</b> ♻️👗🧥✨<br>
+    <span style="font-size:0.9em;">Made with 💚 by Mech X4 for Odoo Hackathon 25⭕</span>
+  </div>
 </body>
-</html> 
+</html>

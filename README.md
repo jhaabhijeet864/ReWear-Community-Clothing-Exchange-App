@@ -1,4 +1,4 @@
-# 👕♻️ Odoo Hackathon: ReWear – Community Clothing Exchange
+# ♻️ Odoo Hackathon
 
 ---
 

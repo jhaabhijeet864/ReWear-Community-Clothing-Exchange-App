@@ -10,6 +10,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
+    background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
 }
 
 .container {
@@ -261,21 +262,23 @@ body {
 }
 
 .btn-primary {
-    background-color: #2563eb;
+    background: linear-gradient(90deg, #2563eb 0%, #764ba2 100%);
     color: white;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
+    background: linear-gradient(90deg, #764ba2 0%, #2563eb 100%);
 }
 
 .btn-success {
-    background-color: #10b981;
+    background: linear-gradient(90deg, #10b981 0%, #45b7d1 100%);
     color: white;
+    box-shadow: 0 2px 8px rgba(16,185,129,0.08);
 }
 
 .btn-success:hover {
-    background-color: #059669;
+    background: linear-gradient(90deg, #45b7d1 0%, #10b981 100%);
 }
 
 /* Dashboard Styles */
@@ -462,4 +465,64 @@ body {
 
 .hidden {
     display: none;
+}
+
+/* Elegant Auth Form Enhancements */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    margin-top: 4rem;
+}
+
+.icon-input {
+    position: relative;
+}
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 2;
+}
+.icon-input input {
+    padding-left: 2.5rem;
+}
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.2s;
+}
+.toggle-password:hover {
+    color: #2563eb;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 1rem;
+}
+.form-footer a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0.3rem;
+    transition: color 0.2s;
+}
+.form-footer a:hover {
+    color: #764ba2;
 } 

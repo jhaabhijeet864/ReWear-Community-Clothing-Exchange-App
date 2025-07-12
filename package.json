@@ -8,10 +8,18 @@
     "dev": "live-server --port=3000 --open=/",
     "build": "echo 'Build complete'"
   },
-  "keywords": ["clothing", "exchange", "community", "swap"],
+  "keywords": [
+    "clothing",
+    "exchange",
+    "community",
+    "swap"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "mongodb": "^6.17.0"
   }
 }

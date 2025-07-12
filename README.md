@@ -1,207 +1,99 @@
-# ReWear Community Clothing Exchange
+# ReWear – Community Clothing Exchange
 
-A simple, vanilla JavaScript application for community clothing exchange and swapping.
+## Project Overview
+ReWear is a web-based platform that enables users to exchange unused clothing through direct swaps or a point-based redemption system. The goal is to promote sustainable fashion and reduce textile waste by encouraging users to reuse wearable garments instead of discarding them.
 
-## 🚀 Features
-
-- **User Authentication**: Login and registration system
-- **Product Management**: Add, edit, and view clothing items
-- **Category Browsing**: Browse items by category (Men, Women, Kids, Accessories)
-- **User Dashboard**: Manage your listings and purchases
-- **Admin Panel**: User management and system administration
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
-
-## 🛠️ Technology Stack
-
-- **Frontend**: Vanilla JavaScript (ES6+)
-- **Styling**: CSS3 with modern design patterns
-- **Icons**: Font Awesome
-- **Development Server**: Live Server
-
-## 📁 Project Structure
-
-```
-Proto/
-├── index.html              # Main HTML file
-├── package.json            # Project configuration
-├── README.md              # Project documentation
-├── styles/
-│   └── main.css           # Main stylesheet
-└── js/
-    ├── app.js             # Main application logic
-    ├── navigation.js      # Page routing and navigation
-    ├── forms.js           # Form handling and validation
-    └── data.js            # Data management and mock data
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (version 14 or higher)
-- npm (comes with Node.js)
-
-### Installation
-
-1. **Navigate to the project directory:**
-   ```bash
-   cd Proto
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server:**
-   ```bash
-   npm start
-   ```
-
-4. **Open your browser:**
-   Navigate to `http://localhost:3000`
-
-## 🎯 Usage
-
-### Demo Accounts
-
-**Admin User:**
-- Username: `admin`
-- Password: `password`
-
-**Regular Users:**
-- Username: `sarah_j` / Password: `password`
-- Username: `mike_d` / Password: `password`
-
-### Features Walkthrough
-
-1. **Home Page**: Browse featured products and categories
-2. **Login/Register**: Create an account or sign in
-3. **Dashboard**: View your listings and manage your account
-4. **Add Products**: Upload images and create new listings
-5. **Admin Panel**: Manage users and system settings (admin only)
-
-## 🎨 Design Features
-
-- **Modern UI**: Clean, responsive design with smooth animations
-- **Color Scheme**: Professional blue and gray palette
-- **Typography**: Readable fonts with proper hierarchy
-- **Interactive Elements**: Hover effects and smooth transitions
-- **Mobile-First**: Responsive design that works on all devices
-
-## 📱 Responsive Design
-
-The application is fully responsive and optimized for:
-- **Desktop**: 1200px+ screens
-- **Tablet**: 768px - 1199px screens
-- **Mobile**: 320px - 767px screens
-
-## 🔧 Development
-
-### Available Scripts
-
-- `npm start` - Start the development server
-- `npm run dev` - Start the development server (alias)
-- `npm run build` - Build the project (placeholder)
-
-### File Structure
-
-- **HTML**: Single-page application with multiple sections
-- **CSS**: Modular styles with utility classes
-- **JavaScript**: Object-oriented approach with ES6 classes
-
-### Key JavaScript Classes
-
-- `ReWearApp`: Main application controller
-- `Navigation`: Page routing and navigation
-- `FormHandler`: Form validation and handling
-- `DataManager`: Data operations and mock data
-
-## 🗄️ Data Structure
-
-### Products
-```javascript
-{
-  id: 1,
-  name: "Product Name",
-  description: "Product description",
-  category: "Men/Women/Kids/Accessories",
-  price: 25,
-  owner: "username",
-  images: ["image1.jpg"],
-  status: "available",
-  condition: "Good/Excellent",
-  size: "M",
-  tags: ["tag1", "tag2"]
-}
-```
-
-### Users
-```javascript
-{
-  id: 1,
-  username: "username",
-  name: "Full Name",
-  email: "email@example.com",
-  role: "user/admin",
-  listings: [1, 2, 3],
-  purchases: [4, 5],
-  rating: 4.8,
-  totalSwaps: 12
-}
-```
-
-## 🚀 Deployment
-
-### Simple Deployment
-
-1. **Build the project:**
-   ```bash
-   npm run build
-   ```
-
-2. **Deploy to any static hosting service:**
-   - Netlify
-   - Vercel
-   - GitHub Pages
-   - AWS S3
-
-### Production Considerations
-
-- Minify CSS and JavaScript files
-- Optimize images
-- Enable HTTPS
-- Set up proper caching headers
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
-## 🆘 Support
-
-For support and questions:
-- Check the browser console for errors
-- Verify all files are in the correct locations
-- Ensure Node.js and npm are properly installed
-
-## 🔮 Future Enhancements
-
-- Backend API integration
-- Real-time notifications
-- Image upload functionality
-- Payment processing
-- Advanced search and filtering
-- User ratings and reviews
-- Mobile app development
+**Key Features:**
+- User authentication (signup/login)
+- Landing page with featured items
+- User dashboard (profile, points, items, swaps)
+- Item listing and detail pages
+- Add new item (with images, details, tags)
+- Swap system (direct or points-based)
+- Admin panel for moderation
 
 ---
 
-**Built with ❤️ for the ReWear Community** 
+## How to Run the Project
+
+### 1. **Frontend (Vanilla JavaScript)**
+The frontend is a simple static site (HTML/CSS/JS) and does **not** require a build step or npm dependencies.
+
+**To run locally:**
+- Open `index.html` in your browser, or
+- Use a simple static server (e.g. [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) VSCode extension, or `npx live-server`):
+  ```bash
+  npx live-server --port=3000 --open=./index.html
+  ```
+
+### 2. **Backend (Node.js/Express/MongoDB)**
+The backend is located in the `backend/` directory and provides the API for authentication, item management, swaps, and admin features.
+
+**To run the backend:**
+1. Open a terminal and navigate to the `backend/` folder:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Copy the environment variables template and edit as needed:
+   ```bash
+   cp env.example .env
+   # Edit .env with your MongoDB URI and JWT secret
+   ```
+4. (Optional) Seed the database with sample data:
+   ```bash
+   npm run seed
+   ```
+5. Start the backend server:
+   ```bash
+   npm run dev
+   # or for production
+   npm start
+   ```
+
+The backend API will be available at `http://localhost:5000/api` by default.
+
+---
+
+## Directory Structure
+
+```
+Odoo_Mexh_X4/
+│
+├── backend/              # Node.js/Express backend API
+│   ├── models/           # Mongoose models (User, Item, Swap)
+│   ├── routes/           # Express route handlers
+│   ├── middleware/       # Auth and validation middleware
+│   ├── scripts/          # Utility scripts (e.g. seed.js)
+│   ├── uploads/          # Uploaded images (local storage)
+│   ├── .env.example      # Environment variable template
+│   ├── package.json      # Backend dependencies and scripts
+│   └── README.md         # Backend API documentation
+│
+├── js/                   # Frontend JavaScript files
+├── styles/               # Frontend CSS files
+├── index.html            # Main frontend HTML file
+├── package.json          # (Optional) Frontend npm scripts (if any)
+├── README.md             # (This file) Project overview and setup
+└── ...                   # Other project files
+```
+
+---
+
+## API Documentation
+
+For detailed backend API documentation, see:
+- [backend/README.md](./backend/README.md)
+
+---
+
+## Getting Help
+- For backend/API issues, see the backend README or open an issue.
+- For frontend/static site issues, check your browser console for errors or ask for help.
+
+---
+
+**Happy swapping and coding!** 

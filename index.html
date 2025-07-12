@@ -91,17 +91,23 @@
         <!-- Login Page -->
         <section id="login" class="page">
             <div class="container">
-                <div class="auth-form">
+                <div class="auth-form glass-card">
                     <h2>Login</h2>
                     <form id="login-form">
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-user"></i></span>
                             <input type="text" id="login-username" placeholder="Username" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
                             <input type="password" id="login-password" placeholder="Password" required>
+                            <span class="toggle-password" onclick="togglePassword('login-password', this)"><i class="fas fa-eye"></i></span>
                         </div>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
+                    <div class="form-footer">
+                        <span>Don't have an account?</span> <a href="#register" class="switch-link">Sign Up</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -109,23 +115,32 @@
         <!-- Register Page -->
         <section id="register" class="page">
             <div class="container">
-                <div class="auth-form">
+                <div class="auth-form glass-card">
                     <h2>Register</h2>
                     <form id="register-form">
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-user"></i></span>
                             <input type="text" id="register-name" placeholder="Full Name" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
                             <input type="email" id="register-email" placeholder="Email" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
                             <input type="password" id="register-password" placeholder="Password" required>
+                            <span class="toggle-password" onclick="togglePassword('register-password', this)"><i class="fas fa-eye"></i></span>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group icon-input">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
                             <input type="password" id="register-confirm" placeholder="Confirm Password" required>
+                            <span class="toggle-password" onclick="togglePassword('register-confirm', this)"><i class="fas fa-eye"></i></span>
                         </div>
                         <button type="submit" class="btn btn-success">Register</button>
                     </form>
+                    <div class="form-footer">
+                        <span>Already have an account?</span> <a href="#login" class="switch-link">Login</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -231,5 +246,20 @@
     <script src="js/navigation.js"></script>
     <script src="js/forms.js"></script>
     <script src="js/data.js"></script>
+    <script>
+    function togglePassword(inputId, el) {
+        const input = document.getElementById(inputId);
+        const icon = el.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    }
+    </script>
 </body>
 </html> 

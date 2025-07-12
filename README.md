@@ -1,6 +1,6 @@
 # ReWear – Community Clothing Exchange
 
-## Teanm: Mech X4
+## Team: Mech X4
 1. Abhijeet Jha (TL)
 2. Siya Pankaj
 

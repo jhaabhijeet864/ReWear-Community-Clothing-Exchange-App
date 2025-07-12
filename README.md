@@ -1,5 +1,15 @@
 # ReWear – Community Clothing Exchange
 
+---
+
+## Team: Mech X4
+
+### Team Members
+- Abhijeet Jha (Team Lead)
+- Siya Pankaj
+
+---
+
 ## Project Overview
 ReWear is a web-based platform that enables users to exchange unused clothing through direct swaps or a point-based redemption system. The goal is to promote sustainable fashion and reduce textile waste by encouraging users to reuse wearable garments instead of discarding them.
 

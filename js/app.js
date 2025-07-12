@@ -57,6 +57,46 @@ class ReWearApp {
                 owner: 'emma_w',
                 images: ['bag1.jpg'],
                 status: 'available'
+            },
+            {
+                id: 5,
+                name: 'Women\'s Summer Dress',
+                description: 'Light floral summer dress, perfect for warm weather occasions.',
+                category: 'Women',
+                price: 18,
+                owner: 'anna_b',
+                images: ['dress1.jpg'],
+                status: 'available'
+            },
+            {
+                id: 6,
+                name: 'Elegant Evening Dress',
+                description: 'Beautiful black evening dress, perfect for formal occasions and special events.',
+                category: 'Women',
+                price: 45,
+                owner: 'sophia_m',
+                images: ['dress2.jpg'],
+                status: 'available'
+            },
+            {
+                id: 7,
+                name: 'Casual Maxi Dress',
+                description: 'Comfortable and stylish maxi dress in bohemian style, great for everyday wear.',
+                category: 'Women',
+                price: 28,
+                owner: 'rachel_t',
+                images: ['dress3.jpg'],
+                status: 'available'
+            },
+            {
+                id: 8,
+                name: 'Vintage Cocktail Dress',
+                description: 'Stunning vintage-style cocktail dress with lace details, perfect for parties.',
+                category: 'Women',
+                price: 35,
+                owner: 'jessica_l',
+                images: ['dress4.jpg'],
+                status: 'available'
             }
         ];
 
@@ -83,10 +123,64 @@ class ReWearApp {
             {
                 id: 3,
                 username: 'admin',
-                name: 'Admin User',
+                name: 'Abihjeet Jha - Admin',
                 email: 'admin@rewear.com',
                 role: 'admin',
                 listings: [],
+                purchases: []
+            },
+            {
+                id: 4,
+                username: 'lisa_m',
+                name: 'Lisa Martinez',
+                email: 'lisa@email.com',
+                role: 'user',
+                listings: [3],
+                purchases: []
+            },
+            {
+                id: 5,
+                username: 'emma_w',
+                name: 'Emma Wilson',
+                email: 'emma@email.com',
+                role: 'user',
+                listings: [4],
+                purchases: []
+            },
+            {
+                id: 6,
+                username: 'anna_b',
+                name: 'Anna Brown',
+                email: 'anna@email.com',
+                role: 'user',
+                listings: [5],
+                purchases: []
+            },
+            {
+                id: 7,
+                username: 'sophia_m',
+                name: 'Sophia Martinez',
+                email: 'sophia@email.com',
+                role: 'user',
+                listings: [6],
+                purchases: []
+            },
+            {
+                id: 8,
+                username: 'rachel_t',
+                name: 'Rachel Taylor',
+                email: 'rachel@email.com',
+                role: 'user',
+                listings: [7],
+                purchases: []
+            },
+            {
+                id: 9,
+                username: 'jessica_l',
+                name: 'Jessica Lewis',
+                email: 'jessica@email.com',
+                role: 'user',
+                listings: [8],
                 purchases: []
             }
         ];
@@ -176,28 +270,56 @@ class ReWearApp {
         const productGrid = document.getElementById('product-grid');
         if (!productGrid) return;
 
-        productGrid.innerHTML = this.products.map(product => `
-            <div class="product-card" data-product-id="${product.id}">
-                <div class="product-image">
-                    <i class="fas fa-tshirt"></i>
+        productGrid.innerHTML = this.products.map(product => {
+            // Use different icons for different product types
+            let productIcon = 'fas fa-tshirt';
+            if (product.name.toLowerCase().includes('dress')) {
+                productIcon = 'fas fa-female';
+            } else if (product.name.toLowerCase().includes('jacket') || product.name.toLowerCase().includes('coat')) {
+                productIcon = 'fas fa-user-tie';
+            } else if (product.name.toLowerCase().includes('shirt')) {
+                productIcon = 'fas fa-user';
+            } else if (product.name.toLowerCase().includes('shoes')) {
+                productIcon = 'fas fa-shoe-prints';
+            } else if (product.name.toLowerCase().includes('bag') || product.name.toLowerCase().includes('handbag')) {
+                productIcon = 'fas fa-shopping-bag';
+            }
+
+            return `
+                <div class="product-card" data-product-id="${product.id}">
+                    <div class="product-image ${product.name.toLowerCase().includes('dress') ? 'dress-item' : ''}">
+                        <i class="${productIcon}"></i>
+                        ${product.name.toLowerCase().includes('dress') ? '<div class="dress-pattern"></div>' : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <p><strong>Category:</strong> ${product.category}</p>
+                        <p><strong>Price:</strong> $${product.price}</p>
+                        <button class="btn btn-primary" onclick="app.viewProduct(${product.id})">
+                            View Details
+                        </button>
+                    </div>
                 </div>
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    <p>${product.description}</p>
-                    <p><strong>Category:</strong> ${product.category}</p>
-                    <p><strong>Price:</strong> $${product.price}</p>
-                    <button class="btn btn-primary" onclick="app.viewProduct(${product.id})">
-                        View Details
-                    </button>
-                </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
     renderDashboard() {
         if (!this.currentUser) {
             this.navigateToPage('login');
             return;
+        }
+
+        // Update user information display
+        const userNameElement = document.querySelector('.user-details h3');
+        const userEmailElement = document.querySelector('.user-details p');
+        
+        if (userNameElement) {
+            userNameElement.textContent = this.currentUser.name;
+        }
+        if (userEmailElement) {
+            userEmailElement.textContent = this.currentUser.email;
         }
 
         const userListings = document.getElementById('user-listings');

@@ -119,6 +119,54 @@ class DataManager {
                 size: 'S',
                 createdAt: '2024-01-20',
                 tags: ['summer', 'dress', 'floral', 'casual']
+            },
+            {
+                id: 7,
+                name: 'Elegant Evening Dress',
+                description: 'Beautiful black evening dress, perfect for formal occasions and special events.',
+                category: 'Women',
+                categoryId: 2,
+                price: 45,
+                owner: 'sophia_m',
+                ownerName: 'Sophia Martinez',
+                images: ['dress2.jpg'],
+                status: 'available',
+                condition: 'Excellent',
+                size: 'M',
+                createdAt: '2024-01-22',
+                tags: ['evening', 'dress', 'formal', 'elegant', 'black']
+            },
+            {
+                id: 8,
+                name: 'Casual Maxi Dress',
+                description: 'Comfortable and stylish maxi dress in bohemian style, great for everyday wear.',
+                category: 'Women',
+                categoryId: 2,
+                price: 28,
+                owner: 'rachel_t',
+                ownerName: 'Rachel Taylor',
+                images: ['dress3.jpg'],
+                status: 'available',
+                condition: 'Good',
+                size: 'L',
+                createdAt: '2024-01-25',
+                tags: ['maxi', 'dress', 'bohemian', 'casual', 'comfortable']
+            },
+            {
+                id: 9,
+                name: 'Vintage Cocktail Dress',
+                description: 'Stunning vintage-style cocktail dress with lace details, perfect for parties.',
+                category: 'Women',
+                categoryId: 2,
+                price: 35,
+                owner: 'jessica_l',
+                ownerName: 'Jessica Lewis',
+                images: ['dress4.jpg'],
+                status: 'available',
+                condition: 'Excellent',
+                size: 'S',
+                createdAt: '2024-01-18',
+                tags: ['vintage', 'cocktail', 'dress', 'lace', 'party']
             }
         ];
     }
@@ -154,7 +202,7 @@ class DataManager {
             {
                 id: 3,
                 username: 'admin',
-                name: 'Admin User',
+                name: 'Abihjeet Jha - Admin',
                 email: 'admin@rewear.com',
                 role: 'admin',
                 avatar: null,
@@ -189,6 +237,58 @@ class DataManager {
                 joinDate: '2024-01-04',
                 rating: 4.9,
                 totalSwaps: 6
+            },
+            {
+                id: 6,
+                username: 'anna_b',
+                name: 'Anna Brown',
+                email: 'anna@email.com',
+                role: 'user',
+                avatar: null,
+                listings: [6],
+                purchases: [],
+                joinDate: '2024-01-20',
+                rating: 4.6,
+                totalSwaps: 3
+            },
+            {
+                id: 7,
+                username: 'sophia_m',
+                name: 'Sophia Martinez',
+                email: 'sophia@email.com',
+                role: 'user',
+                avatar: null,
+                listings: [7],
+                purchases: [],
+                joinDate: '2024-01-22',
+                rating: 4.8,
+                totalSwaps: 5
+            },
+            {
+                id: 8,
+                username: 'rachel_t',
+                name: 'Rachel Taylor',
+                email: 'rachel@email.com',
+                role: 'user',
+                avatar: null,
+                listings: [8],
+                purchases: [],
+                joinDate: '2024-01-25',
+                rating: 4.7,
+                totalSwaps: 7
+            },
+            {
+                id: 9,
+                username: 'jessica_l',
+                name: 'Jessica Lewis',
+                email: 'jessica@email.com',
+                role: 'user',
+                avatar: null,
+                listings: [9],
+                purchases: [],
+                joinDate: '2024-01-18',
+                rating: 4.9,
+                totalSwaps: 4
             }
         ];
     }
